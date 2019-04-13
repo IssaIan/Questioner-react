@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../css/bootstrap.min.css';
 import Axios from 'axios';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
+import Loader from '../utils/loader';
 
 const jwt = require("jsonwebtoken");
 
@@ -12,7 +13,7 @@ class Meetups extends Component {
         this.state = {
             meetups: [],
             error: null,
-            isLoading: false
+            isLoading: true
         }
     }
     
@@ -23,7 +24,8 @@ class Meetups extends Component {
         })
         .then((response) => {
            this.setState({
-               meetups: response.data.results
+               meetups: response.data.results,
+               isLoading: false
            })
         })
         .catch(error => this.setState({ error, isLoading: false })
@@ -66,7 +68,9 @@ class Meetups extends Component {
                     );
                 })
                 ) : (
-                <h3>Loading...</h3>
+                <MDBContainer className="margins">
+                    <Loader />
+                </MDBContainer>
                 )}
             </div>
         );

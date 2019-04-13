@@ -4,7 +4,7 @@ import '../css/bootstrap.min.css';
 import '../css/main.css';
 import { toast } from "react-toastify";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBInput } from "mdbreact";
-
+import Loader from '../utils/loader';
 class Login extends Component {
     constructor(props){
         super(props)
@@ -14,13 +14,13 @@ class Login extends Component {
             password: '',
             passerror: false,
             emailerror: false,
-            redirect: false
+            isLoading: false
         }
     }
 
     handleLogin(event) {
         event.preventDefault()
-
+        this.setState({ isLoading: true });
         document.getElementById('error1').innerHTML = ''
         var myData = {
             'email': this.state.email,
@@ -32,8 +32,7 @@ class Login extends Component {
             method: 'POST',
         })
         .then((response) => {
-            window.localStorage.setItem('token', response.data.token)
-            this.setState({ redirect: true });
+            window.localStorage.setItem('token', response.data.token);
             this.props.history.push('/meetups');
             toast.success("You are now logged in!", {
                 position: toast.POSITION.TOP_CENTER,
@@ -62,9 +61,13 @@ class Login extends Component {
         }
 
     render() {
-        
         return (
             <div>
+            { this.state.isLoading ? (
+                <MDBContainer className="margins">
+                <Loader />
+                </MDBContainer>
+            ): 
                 <MDBContainer className="margins">
                 <div className="row">
                 <div className="col-md-10 offset-md-3 mr-auto">
@@ -100,6 +103,7 @@ class Login extends Component {
                     </div>
                     </div>
                 </MDBContainer>
+            }
             </div>
            
         )
