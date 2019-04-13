@@ -64,9 +64,9 @@ class Login extends Component {
         return (
             <div>
             { this.state.isLoading ? (
-                <MDBContainer className="margins">
+                <div className="loader">
                 <Loader />
-                </MDBContainer>
+                </div>
             ): 
                 <MDBContainer className="margins">
                 <div className="row">

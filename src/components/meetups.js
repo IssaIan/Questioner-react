@@ -68,9 +68,9 @@ class Meetups extends Component {
                     );
                 })
                 ) : (
-                <MDBContainer className="margins">
+                <div className="loader">
                     <Loader />
-                </MDBContainer>
+                </div>
                 )}
             </div>
         );
