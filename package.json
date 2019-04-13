@@ -1,0 +1,45 @@
+{
+  "name": "questioner-react",
+  "version": "1.0.0",
+  "description": "API consumption",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IssaIan/Questioner-react.git"
+  },
+  "author": "Issatheonly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IssaIan/Questioner-react/issues"
+  },
+  "homepage": "https://github.com/IssaIan/Questioner-react#readme",
+  "dependencies": {
+    "@babel/core": "^7.4.3",
+    "axios": "^0.18.0",
+    "core-js": "^3.0.1",
+    "css-loader": "^2.1.1",
+    "jquery": "^3.3.1",
+    "mdbreact": "^4.12.0",
+    "node": "^11.13.0",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "style-loader": "^0.23.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
