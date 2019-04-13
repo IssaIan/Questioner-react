@@ -3,6 +3,8 @@ import '../css/bootstrap.min.css';
 import Axios from 'axios';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from "mdbreact";
 
+const jwt = require("jsonwebtoken");
+
 class Meetups extends Component {
     constructor(props) {
         super(props);
@@ -33,14 +35,15 @@ class Meetups extends Component {
     render() {
         const { meetups, isLoading, error } = this.state;
 
-        if(!localStorage.getItem("token")){
+        const decoded = jwt.decode(localStorage.getItem("token"));
+        if (!decoded) {
             this.props.history.push("/")
         }
         return (
             <div>
             {error ? <p>{error.message}</p> : null}
                 {!isLoading ? (
-                    meetups.map(meetup => {
+                    meetups.map(meetup => { 
                     return (
                 <MDBContainer className="margins">
                     <MDBRow>
@@ -48,7 +51,7 @@ class Meetups extends Component {
                             <MDBCard>
                             <MDBRow className="d-flex justify-content-start">
                                 <h3 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">
-                                {meetup.title}
+                                {  } { meetup.title }
                                 </h3>
                             </MDBRow>
                                 <MDBCardBody className="mx-4 mt-4">

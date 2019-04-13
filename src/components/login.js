@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import '../css/bootstrap.min.css';
-import '../css/main.css'
+import '../css/main.css';
+import { toast } from "react-toastify";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBInput } from "mdbreact";
 
 class Login extends Component {
@@ -13,7 +14,7 @@ class Login extends Component {
             password: '',
             passerror: false,
             emailerror: false,
-            redirect: false,
+            redirect: false
         }
     }
 
@@ -32,8 +33,15 @@ class Login extends Component {
         })
         .then((response) => {
             window.localStorage.setItem('token', response.data.token)
-            this.setState({ redirect: true })
+            this.setState({ redirect: true });
             this.props.history.push('/meetups');
+            toast.success("You are now logged in!", {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 3000,
+                
+                hideProgressBar: true,
+                pauseOnHover: true,
+              });
         })
         .catch((error) => {
             if (error.response.data['detail']) {
