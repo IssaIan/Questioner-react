@@ -23,6 +23,8 @@ module.exports = {
         ]
     },
     devServer: {
+        contentBase: path.join(__dirname, "src"),
+        https: true,
         historyApiFallback: true,
     },
     plugins: [
