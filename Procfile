@@ -1,1 +1,1 @@
-web: npm install --dev; npm start
+web: node server.js
