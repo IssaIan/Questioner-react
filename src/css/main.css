@@ -1,10 +1,22 @@
 .margins {
     margin-top: 5%;
 }
-#error1 {
+.error1 {
     color: red;
     text-align: center;
 }
 .loader {
     margin-top: 25%;
+}
+.signup{
+    margin-bottom: 5%;
+}
+.title {
+    text-align: center;
+    color: rgb(146, 203, 236);
+}
+#hometext {
+    text-align: center;
+    color: aquamarine;
+    font-size: x-large;
 }

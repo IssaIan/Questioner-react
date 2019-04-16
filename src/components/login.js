@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import '../css/bootstrap.min.css';
-import '../css/main.css';
 import { toast } from "react-toastify";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBInput } from "mdbreact";
 import Loader from '../utils/loader';
@@ -21,7 +19,6 @@ class Login extends Component {
     handleLogin(event) {
         event.preventDefault()
         this.setState({ isLoading: true });
-        document.getElementById('error1').innerHTML = ''
         var myData = {
             'email': this.state.email,
             'password': this.state.password,
@@ -37,15 +34,20 @@ class Login extends Component {
             toast.success("You are now logged in!", {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 3000,
-                
                 hideProgressBar: true,
                 pauseOnHover: true,
               });
         })
         .catch((error) => {
+            this.setState({ isLoading: false });
             if (error.response.data['detail']) {
                 this.setState({passerror: false, emailerror: false})
-                document.getElementById('error1').innerHTML = error.response.data['detail'];
+                toast.error(error.response.data['detail'], {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    pauseOnHover: true,
+                  });
             }
             else if (error.response.data['password']){
                 this.setState({ passerror: true })
@@ -55,7 +57,12 @@ class Login extends Component {
             }
             if (this.state.emailerror || this.state.passerror){
                 console.log(error.response.data)
-                document.getElementById('error1').innerHTML = 'Please provide all the details!'
+                toast.error("Please provide all the details!", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    pauseOnHover: true,
+                  });
             }
         })
         }
@@ -80,7 +87,6 @@ class Login extends Component {
                                 Log In
                                 </h3>
                             </MDBRow>
-                            <p id="error1"></p>
                             </div>
                             <MDBCardBody className="mx-4 mt-4">
                             <MDBInput label="Your email" group type="text" validate onChange={(event => this.setState({email:event.target.value}))} required/>

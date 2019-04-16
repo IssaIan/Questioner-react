@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../css/bootstrap.min.css';
 import Axios from 'axios';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
 import Loader from '../utils/loader';
@@ -39,7 +38,7 @@ class Meetups extends Component {
 
         const decoded = jwt.decode(localStorage.getItem("token"));
         if (!decoded) {
-            this.props.history.push("/")
+            this.props.history.push("/login")
         }
         return (
             <div>
@@ -47,9 +46,10 @@ class Meetups extends Component {
                 {!isLoading ? (
                     meetups.map(meetup => { 
                     return (
+                <div key = { meetup.id }>
                 <MDBContainer className="margins">
                     <MDBRow>
-                        <MDBCol md="6">
+                        <MDBCol>
                             <MDBCard>
                             <MDBRow className="d-flex justify-content-start">
                                 <h3 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">
@@ -65,6 +65,7 @@ class Meetups extends Component {
                         </MDBCol>
                     </MDBRow>
                 </MDBContainer>
+                </div>
                     );
                 })
                 ) : (
